@@ -50,13 +50,13 @@
     "phonegap-facebook-plugin": {
         "source": {
             "type": "git",
-            "url": "https://github.com/phonegap/phonegap-facebook-plugin.git",
+            "url": "https://github.com/Wizcorp/phonegap-facebook-plugin.git",
             "subdir": "."
         },
         "is_top_level": true,
         "variables": {
-            "APP_ID": "952763908141700",
-            "APP_NAME": "phonegExample"
+            "APP_ID": "1678552615751227",
+            "APP_NAME": "PhotoQuest"
         }
     },
     "cordova-plugin-inappbrowser": {

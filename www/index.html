@@ -1,12 +1,12 @@
-<html ng-app="ionicApp">
+<html ng-app="PhotoQuestApp">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
 
-  <title>Tabs Example</title>
+  <title>PhotoQuest</title>
 
-  <link href="http://code.ionicframework.com/1.0.0-beta.3/css/ionic.min.css" rel="stylesheet">
-  <script src="http://code.ionicframework.com/1.0.0-beta.3/js/ionic.bundle.min.js"></script>
+  <link href="http://code.ionicframework.com/1.0.0-beta.3/css/ionic.css" rel="stylesheet">
+  <script src="http://code.ionicframework.com/1.0.0-beta.3/js/ionic.bundle.js"></script>
   <script src="cordova.js"></script>
 
   <script src="lib/angularbknd-sdk/dist/backand.debug.js"></script>
@@ -26,40 +26,24 @@
       </ion-nav-back-button>
     </ion-nav-bar>
     <ion-nav-buttons side="left">
-      <button class="button button-icon button-clear ion-navicon" ng-click="showMenu()">
-      </button>
+      <ion-list>
+        <button class="button button-icon button-clear ion-navicon" ng-click="showMenu()">
+        </button>
+
+      </ion-list>
     </ion-nav-buttons>
 
-    <!--<ion-nav-buttons side="right">-->
-      <!--<button class="button button-icon button-clear ion-ios7-gear" ng-click="showRightMenu()">-->
-      <!--</button>-->
-    <!--</ion-nav-buttons>-->
+
     <ion-nav-view animation="slide-left-right"></ion-nav-view>
   </ion-side-menu-content>
 
   <ion-side-menu side="left" ng-controller="MenuCtrl">
     <ion-header-bar class="bar bar-header bar-assertive">
-      <h1 class="title">Hello {{getUsername()}}</h1>
+      <h1 class="title">{{getUsername()}}</h1>
     </ion-header-bar>
     <ion-content has-header="true">
       <ul class="list">
 
-      </ul>
-    </ion-content>
-  </ion-side-menu>
-
-  <ion-side-menu side="right">
-    <ion-header-bar class="bar bar-header bar-dark">
-      <h1 class="title">Right Menu</h1>
-    </ion-header-bar>
-    <ion-content>
-      <ul class="list">
-        <li>
-          <a class="item" menu-close="" href="#/search">Search</a>
-        </li>
-        <li>
-          <a class="item" menu-close="" href="#/settings">Settings</a>
-        </li>
       </ul>
     </ion-content>
   </ion-side-menu>

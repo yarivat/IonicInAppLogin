@@ -1,18 +1,11 @@
 angular.module('SimpleRESTIonic.controllers', [])
+
   .controller('LoginCtrl', function (Backand, $state, $rootScope, LoginService) {
+
     var login = this;
     login.facebookToken = '';
 
-    function signin() {
-      LoginService.signin(login.email, login.password)
-        .then(function () {
-          onLogin();
-        }, function (error) {
-          console.log(error)
-        })
-    }
-
-    function loginError(err){
+    function loginError(err) {
       console.log(err);
     }
 
@@ -38,12 +31,12 @@ angular.module('SimpleRESTIonic.controllers', [])
       try {
         haveInAppPlugin = facebookConnectPlugin;
       }
-      catch (err){
+      catch (err) {
 
       }
 
       // facebookConnectPlugin is not defined on desktop
-      if(haveInAppPlugin) { // mobile
+      if (haveInAppPlugin) { // mobile
         facebookConnectPlugin.login(["public_profile", "email"], fbLoginSuccess,
           function (error) {
             console.error(error)
@@ -51,7 +44,7 @@ angular.module('SimpleRESTIonic.controllers', [])
         );
       }
       else { // desktop
-        LoginService.socialSignIn('facebook').then(function(){
+        LoginService.socialSignIn('facebook').then(function () {
           var username = Backand.getUsername();
           var userRole = Backand.getUserRole();
 
@@ -61,11 +54,6 @@ angular.module('SimpleRESTIonic.controllers', [])
           login.role = userRole;
         }, loginError)
       }
-    }
-
-    function anonymousLogin() {
-      LoginService.anonymousLogin();
-      onLogin();
     }
 
     function onLogin() {
@@ -83,10 +71,7 @@ angular.module('SimpleRESTIonic.controllers', [])
 
     }
 
-    login.signin = signin;
     login.signout = signout;
-    login.anonymousLogin = anonymousLogin;
-
 
   })
 
@@ -132,21 +117,11 @@ angular.module('SimpleRESTIonic.controllers', [])
     }
 
     vm.signupFacebook = signupFacebook;
-    vm.signup = signUp;
-    vm.email = '';
-    vm.password = '';
-    vm.again = '';
-    vm.firstName = '';
-    vm.lastName = '';
     vm.errorMessage = '';
   })
 
   .controller('DashboardCtrl', function (ItemsModel, $rootScope) {
     var vm = this;
-
-    function goToBackand() {
-      window.location = 'http://docs.backand.com';
-    }
 
     function getAll() {
       ItemsModel.all()
@@ -218,7 +193,6 @@ angular.module('SimpleRESTIonic.controllers', [])
     vm.isCurrent = isCurrent;
     vm.cancelEditing = cancelEditing;
     vm.cancelCreate = cancelCreate;
-    vm.goToBackand = goToBackand;
     vm.isAuthorized = false;
 
     $rootScope.$on('authorized', function () {
@@ -243,13 +217,7 @@ angular.module('SimpleRESTIonic.controllers', [])
     $scope.showMenu = function () {
       $ionicSideMenuDelegate.toggleLeft();
     };
-    $scope.showRightMenu = function () {
-      $ionicSideMenuDelegate.toggleRight();
-    };
 
-    $scope.getUsername = function () {
-      return "bla";
-    }
   })
 
   .controller('MenuCtrl', function ($scope, Backand) {

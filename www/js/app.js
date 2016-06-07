@@ -1,4 +1,4 @@
-angular.module('ionicApp', ['ionic', 'backand', 'SimpleRESTIonic.services', 'SimpleRESTIonic.controllers'])
+angular.module('PhotoQuestApp', ['ionic', 'backand', 'SimpleRESTIonic.services', 'SimpleRESTIonic.controllers'])
   .run(function ($ionicPlatform, Backand) {
     $ionicPlatform.ready(function () {
       // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
@@ -21,17 +21,13 @@ angular.module('ionicApp', ['ionic', 'backand', 'SimpleRESTIonic.services', 'Sim
     });
   })
   .config(function (BackandProvider, $stateProvider, $urlRouterProvider) {
-    BackandProvider.setAppName('ionicstarter');
-    BackandProvider.setSignUpToken('4ce88904-75c5-412c-8365-df97d9e18a8f');
-    BackandProvider.setAnonymousToken('87c37623-a2d2-42af-93df-addc65c6e9ad');
+    BackandProvider.setAppName('socialtest1');
+    BackandProvider.setSignUpToken('cf37b110-88ed-4e40-a143-ef9234c37737');
+    BackandProvider.setAnonymousToken('74f10962-053a-11e6-b112-0ed7053426cb');
 
     $urlRouterProvider.otherwise('/tabs/dashboard');
 
     $stateProvider
-      .state('search', {
-        url: '/search',
-        templateUrl: 'search.html'
-      })
       .state('tabs.login', {
         url: '/login',
         views: {
