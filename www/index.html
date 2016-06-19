@@ -1,70 +1,50 @@
-<html ng-app="PhotoQuestApp">
+<!DOCTYPE html>
+<html>
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
 
-  <title>PhotoQuest</title>
+  <!--<meta http-equiv="Content-Security-Policy" content="default-src *; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' 'unsafe-eval'">-->
 
-  <link href="http://code.ionicframework.com/1.0.0-beta.3/css/ionic.css" rel="stylesheet">
-  <script src="http://code.ionicframework.com/1.0.0-beta.3/js/ionic.bundle.js"></script>
+  <title>Photo Quest</title>
+
+  <link href="css/ionic.app.min.css" rel="stylesheet">
+  <script src="lib/ionic/js/ionic.bundle.js"></script>
   <script src="cordova.js"></script>
 
   <script src="lib/angularbknd-sdk/dist/backand.debug.js"></script>
+
+
+  <!-- your app's -->
+  <link href="css/style.css" rel="stylesheet">
+
+  <script src="js/hooks.js"></script>
   <script src="js/app.js"></script>
-  <script src="js/controllers.js"></script>
+  <script src="js/config.js"></script>
   <script src="js/services.js"></script>
+
+  <script src="js/provider/fb.js"></script>
+
+  <script src="js/controllers.js"></script>
+  <script src="js/components/login/login.js"></script>
+  <script src="js/components/tabs/profile.js"></script>
+  <script src="js/components/tabs/wall.js"></script>
+  <script src="js/components/tabs/dash.js"></script>
+
 </head>
 
-<body>
 
+<body ng-app="starter">
 
-<ion-side-menus>
+  <ion-nav-bar class="bar-stable">
+    <ion-nav-back-button>
+    </ion-nav-back-button>
+      <ion-nav-title>
+        <h2>Photo Quest</h2>
+      </ion-nav-title>
+  </ion-nav-bar>
 
-  <ion-side-menu-content ng-controller="NavCtrl">
-    <ion-nav-bar class="bar-positive">
-      <ion-nav-back-button class="button-icon ion-arrow-left-c">
-      </ion-nav-back-button>
-    </ion-nav-bar>
-    <ion-nav-buttons side="left">
-      <ion-list>
-        <button class="button button-icon button-clear ion-navicon" ng-click="showMenu()">
-        </button>
-
-      </ion-list>
-    </ion-nav-buttons>
-
-
-    <ion-nav-view animation="slide-left-right"></ion-nav-view>
-  </ion-side-menu-content>
-
-  <ion-side-menu side="left" ng-controller="MenuCtrl">
-    <ion-header-bar class="bar bar-header bar-assertive">
-      <h1 class="title">{{getUsername()}}</h1>
-    </ion-header-bar>
-    <ion-content has-header="true">
-      <ul class="list">
-
-      </ul>
-    </ion-content>
-  </ion-side-menu>
-
-</ion-side-menus>
-
-
-<script id="home.html" type="text/ng-template">
-  <ion-view title="Home">
-    <!--<ion-content>-->
-    <!--<p>Example of Ionic tabs. Navigate to each tab, and-->
-    <!--navigate to child views of each tab and notice how-->
-    <!--each tab has its own navigation history.</p>-->
-    <!--<p>-->
-    <!--<a class="button icon icon-right ion-chevron-right" href="#/tab/facts">Scientific Facts</a>-->
-    <!--<a class="button icon icon-right ion-chevron-right" href="#/tab/about">About</a>-->
-    <!--</p>-->
-    <!--</ion-content>-->
-  </ion-view>
-</script>
-
+  <ion-nav-view></ion-nav-view>
 
 </body>
 </html>

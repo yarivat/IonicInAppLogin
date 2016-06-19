@@ -1,0 +1,20 @@
+<ion-view view-title="Профиль">
+
+  <ion-nav-buttons side="right">
+    <button class="button" ng-click="profile.logOut()">
+      Выйти
+    </button>
+  </ion-nav-buttons>
+
+  <ion-content class="padding">
+    <h2>Профиль</h2>
+
+    <h3>{{profile.getUsername()}}</h3>
+
+    <p>
+      Что-то о пользователе и возможность выйти из приложения
+    </p>
+  </ion-content>
+
+
+</ion-view>
