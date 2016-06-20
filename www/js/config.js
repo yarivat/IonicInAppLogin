@@ -1,10 +1,12 @@
 angular.module('starter.config', ['starter.controllers'])
 
-  .config(function (BackandProvider, $stateProvider, $urlRouterProvider) {
+  .config(function (BackandProvider, $stateProvider, $ionicConfigProvider, $urlRouterProvider) {
 
     BackandProvider.setAppName('socialtest1');
     BackandProvider.setSignUpToken('cf37b110-88ed-4e40-a143-ef9234c37737');
     BackandProvider.setAnonymousToken('74f10962-053a-11e6-b112-0ed7053426cb');
+
+    $ionicConfigProvider.tabs.position('bottom');
 
     $stateProvider
 
