@@ -4,22 +4,10 @@ angular.module('starter.controllers')
 
     var profile = this;
 
-    function getUserInfo() {
-
-      var details = Backand.config;
-      console.debug(JSON.stringify(details));
-
-      var username = Backand.getUsername();
-      var userRole = Backand.getUserRole();
-
-      login.username = username;
-      login.role = userRole;
-    }
-
     function onLogOut() {
       $state.go('login');
       $rootScope.$broadcast('logout');
-    }
+    };
 
     function logOut() {
       $FB.logOut()
@@ -27,14 +15,20 @@ angular.module('starter.controllers')
           return LoginService.signOut()
         })
         .then(function () {
-          return onLogOut();
+          return onLogOut(); 
         });
-    }
+    };
 
     profile.getUsername = function () {
       return Backand.getUsername();
-    }
+    };
 
     profile.logOut = logOut;
+
+    LoginService.loadUserDetails();
+
+    profile.currentUser = LoginService.currentUser;
+
+
 
   });

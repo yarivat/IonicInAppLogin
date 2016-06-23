@@ -1,6 +1,6 @@
-angular.module('starter.config', ['starter.controllers'])
+angular.module('starter.config', ['starter.controllers', 'starter.services'])
 
-  .config(function (BackandProvider, $stateProvider, $ionicConfigProvider, $urlRouterProvider) {
+  .config(function (BackandProvider, $stateProvider, $ionicConfigProvider, $urlRouterProvider, $httpProvider) {
 
     BackandProvider.setAppName('socialtest1');
     BackandProvider.setSignUpToken('cf37b110-88ed-4e40-a143-ef9234c37737');
@@ -56,5 +56,6 @@ angular.module('starter.config', ['starter.controllers'])
 
     // if none of the above states are matched, use this as the fallback
     $urlRouterProvider.otherwise('/login');
+    $httpProvider.interceptors.push('APIInterceptor');
 
   });

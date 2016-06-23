@@ -6,14 +6,19 @@
     </button>
   </ion-nav-buttons>
 
-  <ion-content class="padding">
-    <h2>Профиль</h2>
+  <ion-content>
+    <div class="list card">
+      <ion-item class="profile-item">
+        <div class="profile-picture big-profile-picture">
+          <img src="{{ profile.currentUser.details['avatar'] }}">
+        </div>
+        <h2 class="profile-name dark">{{ profile.currentUser['name'] }}</h2>
+        <div class="profile-info">Уровень {{ profile.currentUser.details['level'] }} ( {{
+          profile.currentUser.details['experience'] }})
+        </div>
+      </ion-item>
+    </div>
 
-    <h3>{{profile.getUsername()}}</h3>
-
-    <p>
-      Что-то о пользователе и возможность выйти из приложения
-    </p>
   </ion-content>
 
 
