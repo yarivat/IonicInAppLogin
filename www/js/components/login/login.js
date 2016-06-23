@@ -2,7 +2,7 @@ angular.module('starter.controllers')
 
   .controller('LoginCtrl', function (Backand, $state, $rootScope, LoginService, $FB) {
 
-    var login = this;
+    var vm = this;
 
     function loginError(error) {
       console.error("LoginError", JSON.stringify(error));
@@ -17,7 +17,6 @@ angular.module('starter.controllers')
             return onLogIn();
           })
         .catch(function (error) {
-          console.debug("Main catch");
           loginError(JSON.stringify(error));
         });
     }
@@ -25,9 +24,9 @@ angular.module('starter.controllers')
 
     function onLogIn() {
       $state.go('tab.dash');
-      $rootScope.$broadcast('authorized');
+      $rootScope.$broadcast('login');
     }
 
-    login.logIn = logIn;
+    vm.logIn = logIn;
 
   });

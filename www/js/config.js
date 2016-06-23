@@ -28,7 +28,7 @@ angular.module('starter.config', ['starter.controllers'])
         views: {
           'tab-dash': {
             templateUrl: 'js/components/tabs/tab-dash.html',
-            controller: 'DashCtrl'
+            controller: 'DashCtrl as vm'
           }
         }
       })

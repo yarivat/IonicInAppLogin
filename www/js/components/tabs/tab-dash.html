@@ -1,6 +1,28 @@
 <ion-view view-title="Задания">
-  <ion-content class="padding">
-    <h2>Список заданий</h2>
+
+  <ion-content class="padding quests">
+
+    <ion-refresher
+      pulling-text="Обновление..."
+      on-refresh="vm.getAll()"
+    >
+    </ion-refresher>
+
+    <ion-list ng-show='vm.objects.length > 0'>
+        <div class="list card" ng-repeat="object in vm.objects">
+          <div class="item item-divider item-icon-right item-icon-left">
+
+            <h2 class="text-center">{{object.name}}</h2>
+            <i class="icon ion-close-round" ng-click="vm.deleteId(object.id)"></i>
+
+          </div>
+          <div class="item item-body">
+            <div>
+              {{object.description}}
+            </div>
+          </div>
+        </div>
+    </ion-list>
 
   </ion-content>
 </ion-view>
