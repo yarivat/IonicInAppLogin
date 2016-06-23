@@ -1,8 +1,10 @@
 angular.module('starter.services')
 
-  .factory('$FB', function ($q, LoginService) {
+  .factory('$FB', function ($q, Backand) {
 
-    var provider = 'facebook';
+    var service = this;
+    service.provider = 'facebook';
+
 
     var fbLoginSuccess = function () {
 
@@ -10,15 +12,18 @@ angular.module('starter.services')
 
       facebookConnectPlugin.getAccessToken(
         function (token) {
-          LoginService.socialSignInToken(provider, token).then(
+          Backand.socialSignInToken(service.provider, token).then(
             function (d) {
               deferred.resolve(d);
             },
             function (error) {
               console.error(JSON.stringify(error));
               if (typeof(error) === "object" && error['Message'].startsWith("The user is not signed up to")) {
-                deferred.resolve(LoginService.socialSignUp(provider));
-              } else {
+                  Backand.socialSignUp(service.provider).then(function () {
+                    deferred.resolve();
+                  });
+              }
+              else {
                 deferred.reject(error);
               }
             }
@@ -55,7 +60,8 @@ angular.module('starter.services')
 
       if (response.status === 'connected') {
         deferred.resolve(response);
-      } else {
+      }
+      else {
         facebookConnectPlugin.login(
           ["public_profile", "email"],
 
@@ -79,46 +85,54 @@ angular.module('starter.services')
 
     };
 
+    function mobilelogIn() {
+      return fbGetStatus()
+        .then(function (response) {
+
+          return fbLogin(response);
+
+        })
+        .then(function () {
+
+          return fbLoginSuccess();
+
+        });
+
+    }
+
+    function browserLogIn() {
+
+      var deferred = $q.defer();
+
+      Backand.socialSignIn(service.provider).then(
+        function (response) {
+          deferred.resolve(response);
+        },
+        function (error) {
+          console.error(JSON.stringify(error));
+          if (typeof(error) === "object" && error['data'].startsWith("The user is not signed up to")) {
+            deferred.resolve(Backand.socialSignIn(service.provider));
+          }
+          else {
+            deferred.reject(error);
+          }
+        }
+      );
+
+      return deferred.promise;
+    }
+
 
     return {
 
       logIn: function () {
 
-        console.debug("LogIn");
-
-        return fbGetStatus()
-          .then(function (response) {
-
-            return fbLogin(response);
-
-          })
-          .then(function () {
-
-            return fbLoginSuccess();
-
-          });
-
-      },
-
-      browserLogIn: function () {
-
-        var deferred = $q.defer();
-
-        LoginService.socialSignIn(provider).then(
-          function (response) {
-            deferred.resolve();
-          },
-          function (error) {
-            console.error(JSON.stringify(error));
-            if (typeof(error) === "object" && error['data'].startsWith("The user is not signed up to")) {
-              deferred.resolve(LoginService.socialSignUp(provider));
-            } else {
-              deferred.reject(error);
-            }
-          }
-        );
-
-        return deferred.promise;
+        if (window.cordova) {
+          return mobilelogIn();
+        }
+        else {
+          return browserLogIn();
+        }
 
       },
 
@@ -135,7 +149,8 @@ angular.module('starter.services')
               deferred.reject(error);
             }
           );
-        } else {
+        }
+        else {
           deferred.resolve();
         }
 

@@ -1,7 +1,7 @@
 <ion-view view-title="Профиль">
 
   <ion-nav-buttons side="right">
-    <button class="button" ng-click="profile.logOut()">
+    <button class="button" ng-click="profile.logOut('facebook')">
       Выйти
     </button>
   </ion-nav-buttons>
@@ -10,11 +10,11 @@
     <div class="list card">
       <ion-item class="profile-item">
         <div class="profile-picture big-profile-picture">
-          <img src="{{ profile.currentUser.details['avatar'] }}">
+          <img src="{{ currentUser.details['avatar'] }}">
         </div>
-        <h2 class="profile-name dark">{{ profile.currentUser['name'] }}</h2>
-        <div class="profile-info">Уровень {{ profile.currentUser.details['level'] }} ( {{
-          profile.currentUser.details['experience'] }})
+        <h2 class="profile-name dark">{{ currentUser['name'] }}</h2>
+        <div class="profile-info">Уровень {{ currentUser.details['level'] }} ( {{
+          currentUser.details['experience'] }})
         </div>
       </ion-item>
     </div>

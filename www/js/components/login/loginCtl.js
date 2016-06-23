@@ -1,6 +1,6 @@
 angular.module('starter.controllers')
 
-  .controller('LoginCtrl', function (Backand, $state, $rootScope, LoginService, $FB) {
+  .controller('LoginCtrl', function (Backand, $state, $rootScope, LoginService) {
 
     var vm = this;
 
@@ -8,23 +8,22 @@ angular.module('starter.controllers')
       console.error("LoginError", JSON.stringify(error));
     }
 
-    function logIn() {
+    function logIn(provider) {
 
-      var method = (!window.cordova) ? 'browserLogIn' : 'logIn';
-      return $FB[method]()
+      return LoginService.logIn(provider)
         .then(
           function () {
             return onLogIn();
           })
         .catch(function (error) {
-          loginError(JSON.stringify(error));
+          loginError(error);
         });
     }
-
 
     function onLogIn() {
       $state.go('tab.dash');
       $rootScope.$broadcast('login');
+
     }
 
     vm.logIn = logIn;
