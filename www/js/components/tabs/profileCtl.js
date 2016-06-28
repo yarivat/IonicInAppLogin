@@ -18,7 +18,4 @@ angular.module('starter.controllers')
 
     profile.logOut = logOut;
 
-    LoginService.loadUserDetails();
-
-
   });

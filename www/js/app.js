@@ -1,6 +1,6 @@
 angular.module('starter', ['ionic', 'backand', 'starter.config', 'starter.services', 'starter.controllers'])
 
-.run(function($ionicPlatform, $rootScope, $state, Backand) {
+.run(function($ionicPlatform, $rootScope, $state, Backand, LoginService) {
 
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
@@ -18,10 +18,9 @@ angular.module('starter', ['ionic', 'backand', 'starter.config', 'starter.servic
     Backand.setIsMobile(isMobile);
     Backand.setRunSignupAfterErrorInSigninSocial(false);
 
+    LoginService.loadUserDetails();
 
     $rootScope.$on("$stateChangeStart", function(event, toState, toParams, fromState, fromParams) {
-
-      // console.debug(toState.name, Backand.getToken());
 
       if (toState.name != 'login' && Backand.getToken() === undefined) {
         $state.go('login');

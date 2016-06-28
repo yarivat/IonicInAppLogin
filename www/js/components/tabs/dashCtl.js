@@ -12,9 +12,12 @@ angular.module('starter.controllers')
         });
     }
 
-    function deleteId(id) {
-      QuestModel.delete(id).then(getActive);
+    function block(id) {
+      QuestModel.update(id, {'active': false}).then(getAll);
+    }
 
+    function activate(id) {
+      QuestModel.update(id, {'active': true}).then(getAll);
     }
 
     function clearData() {
@@ -23,7 +26,8 @@ angular.module('starter.controllers')
 
     vm.objects = [];
     vm.getAll = getAll;
-    vm.deleteId = deleteId;
+    vm.block = block;
+    vm.activate = activate;
     vm.isAuthorized = false;
 
     $rootScope.$on('login', function () {

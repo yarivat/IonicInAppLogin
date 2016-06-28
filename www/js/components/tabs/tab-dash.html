@@ -10,10 +10,14 @@
 
     <ion-list ng-show='vm.objects.length > 0'>
         <div class="list card" ng-repeat="object in vm.objects">
-          <div class="item item-divider item-icon-right item-icon-left">
+          <div class="item item-divider item-icon-right item-icon-right">
 
             <h2 class="text-center">{{object.name}}</h2>
-            <i class="icon ion-close-round" ng-click="vm.deleteId(object.id)"></i>
+
+            <div ng-if="currentUser.role !== 'User'">
+              <i ng-if="object.active === true" class="icon ion-close-round" ng-click="vm.block(object.id)"></i>
+              <i ng-if="object.active === false" class="icon ion-checkmark" ng-click="vm.activate(object.id)"></i>
+            </div>
 
           </div>
           <div class="item item-body">

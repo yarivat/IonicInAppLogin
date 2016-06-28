@@ -69,6 +69,7 @@ angular.module('starter.services')
 
     service.loadUserDetails = function () {
       $rootScope.currentUser.name = Backand.getUsername();
+      $rootScope.currentUser.role = Backand.getUserRole();
       if ($rootScope.currentUser.name) {
 
         getCurrentUserInfo()
